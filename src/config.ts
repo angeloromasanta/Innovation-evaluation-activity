@@ -1,3 +1,5 @@
+import { GameConfig } from './types';
+
 export const gameConfig: GameConfig = {
   rounds: [
     {
