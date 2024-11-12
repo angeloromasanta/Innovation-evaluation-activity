@@ -1,26 +1,34 @@
-import { GameConfig } from './types';
-
 export const gameConfig: GameConfig = {
   rounds: [
     {
-      consultants: [70, 80, 70, 60, 70],
-      profit: 500,
+      // Round 1: First consultants are pessimistic, later ones reveal it's good
+      // Strategy: Hiring more consultants is better
+      consultants: [40, 50, 85, 90, 95],
+      profit: 1000,
     },
     {
-      consultants: [40, 60, 40, 90, 60],
-      profit: 300,
+      // Round 2: Early consultants very optimistic, later ones reveal high risk
+      // Strategy: Fewer consultants might lead to overconfident investment
+      consultants: [95, 90, 45, 10, 20],
+      profit: 1000,
     },
     {
-      consultants: [80, 20, 20, 30, 0],
-      profit: 400,
+      // Round 3: Highly varied, middle consultant most accurate
+      // Strategy: Medium number of consultants optimal
+      consultants: [20, 95, 60, 15, 90],
+      profit: 1300,
     },
     {
-      consultants: [30, 40, 80, 80, 90],
-      profit: 200,
+      // Round 4: Gets worse with more info, but high reward
+      // Strategy: Less information might be better
+      consultants: [80, 70, 55, 40, 30],
+      profit: 1500,
     },
     {
-      consultants: [60, 60, 20, 20, 10],
-      profit: 100,
+      // Round 5: First consultant accurate, others misleading
+      // Strategy: One consultant could be optimal
+      consultants: [35, 85, 80, 90, 15],
+      profit: 1800,
     },
   ],
   consultantCost: 100,
