@@ -1,5 +1,5 @@
-import create from 'zustand';
-import { GameState } from '../types';
+import { create } from 'zustand';
+import { GameState } from './types';
 
 interface GameStore extends GameState {
   setPhase: (phase: GameState['phase']) => void;
@@ -19,8 +19,8 @@ export const useGameStore = create<GameStore>((set) => ({
   showProbabilities: false,
   showResults: false,
   roundOutcome: null,
-  setPhase: (phase) => set({ phase }),
-  setCurrentRound: (round) => set({ currentRound: round }),
+  setPhase: (phase: GameState['phase']) => set({ phase }),
+  setCurrentRound: (round: number) => set({ currentRound: round }),
   toggleConsultantsHired: () =>
     set((state) => ({ showConsultantsHired: !state.showConsultantsHired })),
   toggleInvestmentDecisions: () =>
@@ -30,5 +30,5 @@ export const useGameStore = create<GameStore>((set) => ({
   toggleProbabilities: () =>
     set((state) => ({ showProbabilities: !state.showProbabilities })),
   toggleResults: () => set((state) => ({ showResults: !state.showResults })),
-  setRoundOutcome: (outcome) => set({ roundOutcome: outcome }),
+  setRoundOutcome: (outcome: boolean | null) => set({ roundOutcome: outcome }),
 }));
