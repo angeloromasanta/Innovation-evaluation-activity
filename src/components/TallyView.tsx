@@ -11,6 +11,7 @@ import { gameConfig } from '../config';
 import RNGAnimation from './RNGAnimation';
 import { resetGame, initializeGame } from '../firebase-init';
 import { calculateAverageProbability } from '../utils';
+import { TeamData, GameState } from '../types';
 
 const TallyView = () => {
   const [teams, setTeams] = useState<TeamData[]>([]);

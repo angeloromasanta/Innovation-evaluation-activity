@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import { gameConfig } from '../config';
+import { TeamData, GameState } from '../types';
 
 const StudentView = () => {
   const [teamName, setTeamName] = useState('');
