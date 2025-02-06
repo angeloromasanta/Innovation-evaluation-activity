@@ -17,19 +17,19 @@ export const gameConfig: GameConfig = {
     {
       // Round 3: Highly varied, middle consultant most accurate
       // Strategy: Medium number of consultants optimal
-      consultants: [20, 95, 60, 15, 90],
+      consultants: [20, 95, 60, 60, 60],
       profit: 1300,
     },
     {
       // Round 4: Gets worse with more info, but high reward
       // Strategy: Less information might be better
-      consultants: [80, 70, 55, 40, 30],
+      consultants: [10, 30, 95, 95, 95],
       profit: 1500,
     },
     {
       // Round 5: First consultant accurate, others misleading
       // Strategy: One consultant could be optimal
-      consultants: [35, 85, 80, 90, 15],
+      consultants: [95, 15, 10, 10, 10],
       profit: 1800,
     },
   ],

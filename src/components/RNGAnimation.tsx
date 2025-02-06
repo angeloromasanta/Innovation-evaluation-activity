@@ -1,8 +1,7 @@
-// components/RNGAnimation.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface RNGAnimationProps {
-  onComplete: (result: boolean) => void;
+  onComplete: (result: boolean, finalPercentage: number) => void;
   probability: number;
 }
 
@@ -22,8 +21,10 @@ const RNGAnimation: React.FC<RNGAnimationProps> = ({
 
     const timeout = setTimeout(() => {
       setIsAnimating(false);
-      const result = Math.random() * 100 <= probability;
-      onComplete(result);
+      const finalPercentage = Math.floor(Math.random() * 100);
+      setCounter(finalPercentage);
+      const result = finalPercentage <= probability;
+      onComplete(result, finalPercentage);
     }, 2000);
 
     return () => {

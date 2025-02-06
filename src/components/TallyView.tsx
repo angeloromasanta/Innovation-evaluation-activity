@@ -12,6 +12,7 @@ import RNGAnimation from './RNGAnimation';
 import { resetGame, initializeGame } from '../firebase-init';
 import { calculateAverageProbability } from '../utils';
 import { TeamData, GameState } from '../types';
+import ProbabilityLine from './ProbabilityLine';
 
 const TallyView = () => {
   const [teams, setTeams] = useState<TeamData[]>([]);
@@ -25,6 +26,8 @@ const TallyView = () => {
     roundOutcome: null,
   });
   const [isRolling, setIsRolling] = useState(false);
+  const [rollPercentage, setRollPercentage] = useState<number | null>(null);
+
 
   useEffect(() => {
     const unsubTeams = onSnapshot(collection(db, 'teams'), (snapshot) => {
@@ -140,6 +143,8 @@ const TallyView = () => {
       // Game over
       return;
     }
+  
+    setRollPercentage(null); // Reset roll percentage for new round
 
     // Reset all teams' current round data
     const updates = teams.map(async (team) => {
@@ -268,18 +273,21 @@ const TallyView = () => {
       </div>
 
       {/* RNG Animation Modal */}
-      {isRolling && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg">
-            <RNGAnimation
-              onComplete={handleRollComplete}
-              probability={calculateAverageProbability(
-                gameConfig.rounds[gameState.currentRound - 1].consultants
-              )}
-            />
-          </div>
-        </div>
-      )}
+{isRolling && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="bg-white p-8 rounded-lg">
+      <RNGAnimation
+        onComplete={(result, finalPercentage) => {
+          setRollPercentage(finalPercentage);
+          handleRollComplete(result);
+        }}
+        probability={calculateAverageProbability(
+          gameConfig.rounds[gameState.currentRound - 1].consultants
+        )}
+      />
+    </div>
+  </div>
+)}
 
       {/* Teams Table */}
       <div className="overflow-x-auto">
@@ -378,34 +386,24 @@ const TallyView = () => {
 
       {/* Consultant Probabilities Display */}
       {gameState.showProbabilities && (
-        <div className="mt-4">
-          <h2 className="text-xl font-bold mb-2">
-            All Consultant Probabilities
-          </h2>
-          <div className="grid grid-cols-5 gap-4">
-            {gameConfig.rounds[gameState.currentRound - 1].consultants.map(
-              (prob, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 p-4 rounded text-center"
-                >
-                  <div className="font-bold">Consultant {index + 1}</div>
-                  <div className="text-2xl">{prob}%</div>
-                </div>
-              )
-            )}
-          </div>
-          {gameState.roundOutcome !== null && (
-            <div
-              className={`mt-4 text-2xl font-bold text-center ${
-                gameState.roundOutcome ? 'text-green-500' : 'text-red-500'
-              }`}
-            >
-              {gameState.roundOutcome ? 'Success!' : 'Failed!'}
-            </div>
-          )}
-        </div>
-      )}
+  <div className="mt-4">
+    <h2 className="text-xl font-bold mb-2">Investment Probability</h2>
+    <div className="mb-6">
+      <ProbabilityLine 
+        probabilities={gameConfig.rounds[gameState.currentRound - 1].consultants}
+        averageProbability={calculateAverageProbability(gameConfig.rounds[gameState.currentRound - 1].consultants)}
+        rollResult={isRolling ? null : gameState.roundOutcome !== null ? rollPercentage : null}
+      />
+    </div>
+    {gameState.roundOutcome !== null && (
+      <div className={`mt-4 text-2xl font-bold text-center ${
+        gameState.roundOutcome ? 'text-green-500' : 'text-red-500'
+      }`}>
+        {gameState.roundOutcome ? 'Success!' : 'Failed!'}
+      </div>
+    )}
+  </div>
+)}
     </div>
   );
 };
