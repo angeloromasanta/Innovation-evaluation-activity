@@ -122,7 +122,7 @@ const ProbabilityLine = ({ probabilities, averageProbability, rollResult = null,
     <svg width={width} height={height} className="font-sans">
       {/* Background gradient */}
       <defs>
-        <linearGradient id="probabilityGradient" x1="0%" y1="0%" x2="100%" y1="0%">
+        <linearGradient id="probabilityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset={`${averageProbability}%`} stopColor="#86efac" />
           <stop offset={`${averageProbability}%`} stopColor="#fca5a5" />
         </linearGradient>
