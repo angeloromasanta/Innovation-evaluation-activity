@@ -28,6 +28,22 @@ const TallyView = () => {
   const [isRolling, setIsRolling] = useState(false);
   const [rollPercentage, setRollPercentage] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (isRolling) {
+      const timeout = setTimeout(() => {
+        const finalPercentage = Math.floor(Math.random() * 100);
+        setRollPercentage(finalPercentage);
+        const result = finalPercentage <= calculateAverageProbability(
+          gameConfig.rounds[gameState.currentRound - 1].consultants
+        );
+        setIsRolling(false);
+        handleRollComplete(result);
+      }, 2000);
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [isRolling]);
+
 
   useEffect(() => {
     const unsubTeams = onSnapshot(collection(db, 'teams'), (snapshot) => {
@@ -272,22 +288,6 @@ const TallyView = () => {
         )}
       </div>
 
-      {/* RNG Animation Modal */}
-{isRolling && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-    <div className="bg-white p-8 rounded-lg">
-      <RNGAnimation
-        onComplete={(result, finalPercentage) => {
-          setRollPercentage(finalPercentage);
-          handleRollComplete(result);
-        }}
-        probability={calculateAverageProbability(
-          gameConfig.rounds[gameState.currentRound - 1].consultants
-        )}
-      />
-    </div>
-  </div>
-)}
 
       {/* Teams Table */}
       <div className="overflow-x-auto">
@@ -391,8 +391,11 @@ const TallyView = () => {
     <div className="mb-6">
       <ProbabilityLine 
         probabilities={gameConfig.rounds[gameState.currentRound - 1].consultants}
-        averageProbability={calculateAverageProbability(gameConfig.rounds[gameState.currentRound - 1].consultants)}
+        averageProbability={calculateAverageProbability(
+          gameConfig.rounds[gameState.currentRound - 1].consultants
+        )}
         rollResult={isRolling ? null : gameState.roundOutcome !== null ? rollPercentage : null}
+        isAnimating={isRolling}
       />
     </div>
     {gameState.roundOutcome !== null && (
