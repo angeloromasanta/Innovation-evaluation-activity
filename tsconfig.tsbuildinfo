@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/config.ts","./src/firebase-init.ts","./src/firebase.ts","./src/gamestore.ts","./src/main.tsx","./src/types.ts","./src/utils.ts","./src/vite-env.d.ts","./src/components/ProbabilityLine.tsx","./src/components/RNGAnimation.tsx","./src/components/StudentView.tsx","./src/components/TallyView.tsx"],"version":"5.6.3"}

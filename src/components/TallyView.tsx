@@ -292,16 +292,28 @@ const TallyView = () => {
       {/* Teams Table */}
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border">
-          <thead>
-            <tr>
-              <th className="border p-2">Metric</th>
-              {teams.map((team) => (
-                <th key={team.teamName} className="border p-2">
-                  {team.teamName}
-                </th>
-              ))}
-            </tr>
-          </thead>
+        <thead>
+  <tr>
+    <th className="border p-2">Metric</th>
+    {teams.map((team) => {
+      // Logic to determine if team has made decisions based on current phase
+      const hasDecided = gameState.phase === 'phase1' 
+        ? team.currentRound.consultantsHired > 0
+        : gameState.phase === 'phase2'
+        ? team.currentRound.invested !== null
+        : false;
+
+      return (
+        <th 
+          key={team.teamName} 
+          className={`border p-2 ${hasDecided ? 'bg-green-100' : 'bg-red-100'}`}
+        >
+          {team.teamName}
+        </th>
+      );
+    })}
+  </tr>
+</thead>
           <tbody>
             <tr>
               <td className="border p-2 font-bold">Total Money</td>
