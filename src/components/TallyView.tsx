@@ -186,12 +186,12 @@ const TallyView = () => {
     teams.forEach(team => {
         const teamRef = doc(db, 'teams', team.teamName);
         batch.update(teamRef, {
-            currentRound: { // Reset for the new round
-              consultantsHired: 0,
-              invested: null, // CRITICAL: reset to null
-              roundProfit: 0,
-            }
-        });
+          currentRound: { // Reset for the new round
+            consultantsHired: null, // <--- CHANGED
+            invested: null, 
+            roundProfit: 0,
+          }
+      });
     });
     await batch.commit();
 
@@ -207,8 +207,9 @@ const TallyView = () => {
   };
   
   const teamsWithConsultants = teams.filter(
-    (team) => team.currentRound && team.currentRound.consultantsHired >= 0 // student can hire 0
+    (team) => team.currentRound && team.currentRound.consultantsHired !== undefined && team.currentRound.consultantsHired !== null
   ).length;
+  
   const teamsWithInvestmentDecision = teams.filter(
     (team) => team.currentRound && team.currentRound.invested !== null 
   ).length;
@@ -307,9 +308,19 @@ const TallyView = () => {
                     (gameState.phase === 'phase2' && team.currentRound?.invested !== null);
                   
                   return (
-                    <th key={team.teamName} className={`border p-3 ${(gameState.phase === 'phase1' || gameState.phase === 'phase2') ? (hasMadeDecisionThisPhase ? 'bg-green-100' : 'bg-red-100') : ''}`}>
-                      {team.teamName}
-                    </th>
+<th key={team.teamName} className={`border p-3 ${
+  (gameState.phase === 'phase1' || gameState.phase === 'phase2') ? 
+    ((gameState.phase === 'phase1' && team.currentRound?.consultantsHired !== null) || 
+     (gameState.phase === 'phase2' && team.currentRound?.invested !== null)) ? 
+    'bg-green-100' : 'bg-red-100' 
+  : ''
+}`}>
+  {team.teamName}
+</th>
+
+
+
+
                   );
                 })}
               </tr>
@@ -391,6 +402,19 @@ const TallyView = () => {
               rollResult={isRolling ? null : (gameState.roundOutcome !== null ? rollPercentage : null)}
               isAnimating={isRolling}
             />
+            <div className="mt-4 grid gap-4">
+  <h3 className="text-xl font-semibold text-gray-700">Expert Opinions</h3>
+  {currentDrugData.consultants.map((probability, index) => (
+    <div key={index} className="p-3 border rounded-lg bg-gray-50">
+      <div className="flex justify-between items-center mb-2">
+        <span className="font-semibold text-lg text-indigo-700">{probability}% Confidence</span>
+        <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Expert #{index + 1}</span>
+      </div>
+      <p className="text-gray-700">{currentDrugData.consultantComments?.[index] || "No detailed opinion available."}</p>
+    </div>
+  ))}
+</div>
+
           </div>
           {gameState.roundOutcome !== null && (
             <div className={`mt-4 text-3xl font-bold text-center ${gameState.roundOutcome ? 'text-green-600' : 'text-red-600'}`}>
@@ -400,6 +424,19 @@ const TallyView = () => {
           )}
         </div>
       )}
+      {gameState.phase === 'registration' && teams.length > 0 && (
+  <div className="overflow-x-auto bg-white shadow rounded-lg p-4 mt-6">
+    <h2 className="text-2xl font-semibold mb-4 text-gray-700">Registered Companies</h2>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {teams.map((team) => (
+        <div key={team.teamName} className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+          <p className="font-semibold text-blue-800">{team.teamName}</p>
+        </div>
+      ))}
+    </div>
+    <p className="mt-4 text-sm text-gray-600">Total Teams Registered: {teams.length}</p>
+  </div>
+)}
     </div>
   );
 };

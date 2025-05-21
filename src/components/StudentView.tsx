@@ -82,7 +82,7 @@ const StudentView = () => {
         teamName,
         totalMoney: 5000000, // Example starting capital for a pharma company
         currentRound: {
-          consultantsHired: 0,
+          consultantsHired: null,
           invested: null,
           roundProfit: 0,
         },
