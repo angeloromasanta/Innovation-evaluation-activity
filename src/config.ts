@@ -1,82 +1,82 @@
 // config.ts
-import { GameConfig } from './types';
+import { GameConfig } from './types'; // Assuming types.ts defines GameConfig and a Round type with these new field names
 
 export const gameConfig: GameConfig = {
   rounds: [
     {
-      drugName: 'GLP-X01',
-      drugDescription: 'A next-generation GLP-1 agonist for Type 2 Diabetes. Investment needed for Phase I.',
-      consultants: [20, 30, 40, 50, 60], // Gradual increase in optimism as more comprehensive work is done
+       drugName: 'CatSynth-X100',
+      drugDescription: 'A novel heterogeneous catalyst for a greener ammonia synthesis process. Investment needed for pilot-scale reactor design and testing.',
+      consultants: [20, 30, 40, 50, 60], // Gradual increase in optimism
       consultantComments: [
-        "(20%) Our off-target liability screen confirmed significant binding to several unexpected GPCRs. High risk of unpredictable side effects in Phase I.",
-        "(30%) The advanced ADME & preliminary rodent PK study indicates poor oral bioavailability and rapid clearance. Major formulation challenges ahead for human trials.",
-        "(40%) Our focused animal efficacy model in diabetic primates showed modest, though statistically significant, glucose lowering, but less impressive than hoped.",
-        "(50%) The in-depth mechanism of action elucidation & receptor engagement study strongly validated target binding and downstream signaling. The science is sound if PK/Tox can be managed.",
-        "(60%) Our competitive landscape analysis and KOL interviews suggest a high unmet need for its specific proposed profile. Strong potential market."
+        "(20%) Initial material characterization (XRD) shows poor active site dispersion and low surface area. High risk of low catalytic activity and selectivity.",
+        "(30%) Preliminary kinetic studies in a batch reactor indicate modest conversion rates but rapid catalyst deactivation under process conditions.",
+        "(40%) Computational modeling (DFT) supports the proposed catalytic mechanism on an idealized surface, but highlights potential poisoning by common feedstock impurities.",
+        "(50%) Bench-scale flow reactor tests demonstrate sustained, but not breakthrough yield. The catalyst appears robust for initial pilot.",
+        "(60%) A techno-economic assessment suggests significant operational cost savings over current industrial processes if target conversion is met."
       ],
-      profit: 100000000,      // $100M
-      consultantCost: 2000000, // $2M per "work package"
-      investmentAmount: 25000000, // $25M for the core Phase I trial itself (if they proceed)
+      profit: 500000,
+      consultantCost: 20000,
+      investmentAmount: 200000,
     },
     {
-      drugName: 'ONC-207',
-      drugDescription: 'A novel kinase inhibitor identified via AI-driven screening, targeting a newly hypothesized pathway in brain tumors. Funding is for stronger basic research.',
-      consultants: [90, 80, 10, 20, 10], // Looks great with superficial/optimistic packages, bad with deep dives
+       drugName: 'PhotoVoltex-AI',
+      drugDescription: 'A new organic semiconductor material, identified via AI-driven computational screening, for next-generation flexible solar panels. Funding for scale-up.',
+      consultants: [90, 60, 10,10, 10], // Looks great superficially, deep dives reveal flaws
       consultantComments: [
-        "(90%) Our high-throughput cell line cytotoxicity screenshows nanomolar potency across multiple glioblastoma cell lines.",
-        "(80%) The initial target validation using CRISPR knockdowns in vitro confirms the kinase is essential for tumor cell survival.",
-        "(10%) Our blood-brain barrier penetrance assessment using in-silico and early rodent models shows virtually zero CNS exposure.",
-        "(20%) A deep dive into the target's pathway biology reveals unlikely single-agent inhibition will be effective long-term.",
-        "(10%) Our early neurogenicity screen flags critical neural development kinases as potential off-targets. High risk of severe neurotoxicity."
+        "(90%) In-silico predictions boast exceptional theoretical charge mobility and ideal bandgap alignment for solar spectrum absorption.",
+        "(60%) Lab-scale spin-coated thin films show promising power conversion efficiency (PCE) under simulated AM1.5G illumination.",
+        "(10%) Accelerated degradation testing (UV exposure, humidity) reveals extremely poor photostability, with >50% PCE loss in under 100 hours.",
+        "(10%) The synthetic route shows reliance on expensive, supply-chain-critical precursors and low  yield, making commercial scale-up economically unviable.",
+        "(10%) Transient absorption spectroscopy indicate dominant exciton recombination pathways, fundamentally limiting quantum efficiency and device lifetime."
       ],
-      profit: 12000000,       // $12M (Low profit to make overall EV negative with full info)
-      consultantCost: 500000,   // $500k per "work package"
-      investmentAmount: 6000000, // $6M for more extensive preclinical development (if they proceed)
+      profit: 500000,
+      consultantCost: 20000,
+      investmentAmount: 200000,
     },
     {
-      drugName: 'IMD-334',
-      drugDescription: 'An existing anti-inflammatory drug (approved for RA) being explored for a rare autoimmune orphan disease. Funding needed for Phase II.',
-      consultants: [10, 10, 80, 90, 90], // Skepticism from generalists, optimism from specialists in the new indication
+       drugName: 'PureChem-Extract',
+      drugDescription: 'Repurposing an existing industrial solvent for a novel, highly selective extraction process for purifying fine chemicals. Funding for process optimization.',
+      consultants: [5, 5, 90, 90, 95], // Skepticism from generalists, optimism from specialists
       consultantComments: [
-        "(10%) Our historical data review of this drug class in related autoimmune conditions shows consistent lack of efficacy. ",
-        "(10%) Feasibility assessment highlights extreme patient heterogeneity and biomarker challenges for this orphan disease. Trial will be very difficult to interpret.",
-        "(80%) Our commissioned study on the drug's mode of action in cellular models shows surprisingly strong immunomodulatory effects.",
-        "(90%) The expert panel on orphan disease trial design confirms a clear regulatory path if even modest efficacy is shown, given the unmet need and known safety.",
-        "(90%) Our advanced biomarker discovery for patient stratification has identified a promising signature that could significantly enrich for responders."
+        "(5%) Standard solubility parameter models (e.g., Hansen) predict poor selectivity in the presence of  similar impurities.",
+        "(5%) A review of this solvent class indicates issues with emulsion formation and difficult phase separation.",
+        "(90%) Our specialized lab trials with a novel phase transfer co-agent demonstrate high distribution coefficients and >99% purity of the target.",
+        "(90%) Engineering confirms the viability of the modified solvent system and outlines a clear path for scale-up.",
+        "(95%) Economic modeling based on improved yield shows a potential 30% reduction in manufacturing cost for the target fine chemical."
       ],
-      profit: 150000000,     // $150M
-      consultantCost: 5000000,  // $5M per "work package" (specialized, costly studies)
-      investmentAmount: 50000000, // $50M for the full Phase IIb trial (if they proceed)
+      profit: 500000,
+      consultantCost: 20000,
+      investmentAmount: 200000,
     },
     {
-      drugName: 'CVX-109',
-      drugDescription: 'A cardiovascular drug for heart failure that showed good Phase II efficacy. Funding for critical Phase III.',
-      consultants: [50, 50, 40, 0, 0], // Initial optimism erodes as deeper, critical reviews come in
+       drugName: 'BioPolymer-EcoWrap',
+      drugDescription: 'A new biodegradable polymer synthesized from renewable resources. Funding for pilot-scale production and regulatory compliance.',
+      consultants: [50, 50, 40, 0, 0], // Initial optimism erodes
       consultantComments: [
-        "(50%) Our review of the Phase II efficacy data and proposed Phase III endpoints suggests a solid foundation.",
-        "(50%) Pharmacokinetic/pharmacodynamic modeling supports the proposed dosing regimen for Phase III. Looks reasonable.",
-        "(40%) Long-term exposure simulations based on Phase II data,flags a potential for rare but serious liver enzyme elevations.",
-        "(0%) Critical review of manufacturing scale-up and COGS indicate the drug will be commercially unviable even if approved due to extreme production costs.",
-        "(0%) We identified a fundamental flaw in the biological rationale that was missed, predicting Phase II results were likely anomalous. Doomed."
+        "(50%) Lab-cast films exhibit tensile strength and flexibility comparable to conventional packaging plastics.",
+        "(50%) Initial polymerization trials show good conversion and molecular weight control.",
+        "(40%) Pilot-scale polymerization runs are encountering issues with thermal degradation during melt processing, leading to inconsistent material properties.",
+        "(0%) LCA reveals that the energy requirements for monomer purification and polymerization are significantly higher than for incumbent fossil-based polymers, negating environmental benefits.",
+        "(0%) Leachate testing of the biodegraded polymer has identified trace amounts of a persistent and bioaccumulative byproduct, posing a significant regulatory hurdle."
       ],
-      profit: 600000000,     // $600M
-      consultantCost: 15000000, // $15M per "work package" (very high-level, critical Phase III reviews)
-      investmentAmount: 250000000, // $250M for the full Phase III trial (if they proceed)
+      profit: 500000,
+      consultantCost: 20000,
+      investmentAmount: 200000,
     },
     {
-      drugName: 'INF-502',
-      drugDescription: 'A cutting-edge gene therapy for a rare pediatric genetic disorder. Funding decisions for final studies and advanced manufacturing process validation.',
-      consultants: [10, 95, 95, 95, 95], // One critical work package flags a major issue, others highly optimistic
+       drugName: 'AquaPure-Catalyst',
+      drugDescription: 'A cutting-edge photocatalytic system for complete degradation of persistent organic pollutants (POPs) in industrial wastewater. Funding for field trials.',
+      consultants: [10, 95, 95, 95, 95], // One critical flaw, others highly optimistic
       consultantComments: [
-        "(10%) Simulations of long-term genotoxicity work predicts a clinically significant risk of secondary malignancies years post-treatment.",
-        "(95%) Preclinical efficacy and safety study in mice shows complete and durable disease correction with no acute toxicity.",
-        "(95%) Our CMC scale-up work package confirms a robust, scalable, and high-purity production method.",
-        "(95%) Patient advocacy and clinical expert consultation reveals overwhelming support and a strong belief in transformative potential, urging rapid development.",
-        "(95%) Assessment indicates a high likelihood of fast-track designation and priority review given the unmet need and profound early data."
+        "(10%) Long-term stability tests reveal significant leaching of the active metal component from the catalyst support into the treated water.",
+        "(95%) Bench-scale experiments show >99.9% degradation of target POPs (e.g., PFAS, pesticides) within a 2-hour treatment cycle under UV-A irradiation.",
+        "(95%) The catalyst synthesis uses low-cost, earth-abundant materials and a scalable sol-gel preparation method.",
+        "(95%) Consultation with environmental engineers indicates a pressing need for effective POP remediation technologies.",
+        "(95%) Preliminary designs for a continuous flow photoreactor system suggest high throughput and energy efficiency."
       ],
-      profit: 300000000,     // $300M
-      consultantCost: 20000000, // $20M per "work package" (complex gene therapy studies)
-      investmentAmount: 150000000, // $150M for clinical development and manufacturing setup (if they proceed)
+      profit: 500000,
+      consultantCost: 20000,
+      investmentAmount: 200000,
     },
   ],
 };
